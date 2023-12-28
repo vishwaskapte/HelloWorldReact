@@ -30,10 +30,10 @@ jobs:
     needs: [build]
 
     steps:
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
-        with:
-          args: deploy --prod
-        env:
+     - name: Install Netlify CLI
+       run: npm install -g netlify-cli
+     - name: Deploy to Netlify
+       run: npx netlify deploy --prod
+       env: 
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
